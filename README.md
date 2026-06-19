@@ -26,17 +26,19 @@ The codebase features a total of 2996 cells across 181 notebook(s). The system i
 
 ```mermaid
 flowchart TD
-    Images[Medical Image Preprocessing] --> Encoder[EfficientNet/ResNet Encoder]
-    Encoder --> Decoder[UNet Decoder & Segmentation Head]
-    Decoder --> Loss[Loss Function: Dice/BCE Loss]
-    Loss --> Train[Model Training & Optimization]
-    Train --> Inf[Inference & Mask Post-Processing]
-    style Images fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
-    style Encoder fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
-    style Decoder fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
-    style Loss fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
-    style Train fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
-    style Inf fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    Data[Patient HCT Tabular & Clinical Data] --> Pre[Pre-processing & Imputation]
+    Pre --> Features[Feature Engineering & Target Transformation]
+    Features --> CV[Stratified K-Fold Cross-Validation]
+    CV --> Models[Survival Models: CoxPH / GBDT Ensembles]
+    Models --> Eval[Evaluation: Harrell's C-Index / Brier Score]
+    Eval --> Pred[Prediction & Submission]
+    style Data fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    style Pre fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    style Features fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    style CV fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    style Models fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    style Eval fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
+    style Pred fill:#1f2937,stroke:#4b5563,stroke-width:1.5px,color:#f9fafb
 ```
 
 ## Notebook Architecture
